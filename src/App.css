@@ -19,6 +19,12 @@ nav a {
   padding: 4px 10px;
 }
 
+nav a:hover {
+  color: #fff;
+  background: #333;
+  text-decoration: none;
+}
+
 nav a.active {
   color: #fff;
   background: #333;
