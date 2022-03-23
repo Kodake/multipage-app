@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { Article } from '../interfaces/appInterfaces';
 
 export const useFetch = (url: string) => {
-    const [data, setData] = useState<Article[]>([]);
+    const [articles, setArticles] = useState<Article[] | undefined>([]);
+    const [article, setArticle] = useState<Article | undefined>(undefined);
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -20,7 +21,8 @@ export const useFetch = (url: string) => {
                 const data = await res.json();
 
                 setIsPending(false);
-                setData(data);
+                setArticle(data);
+                setArticles(data);
                 setError(null);
             } catch (err: any) {
                 if (err.name === 'AbortError') {
@@ -40,5 +42,5 @@ export const useFetch = (url: string) => {
 
     }, [url]);
 
-    return { data, isPending, error }
+    return { articles, article, isPending, error }
 }
